@@ -1,0 +1,103 @@
+body {
+    background-image: url("giphy.gif");
+    background-size: 100%;
+    background-color: white;
+   font-family: Courier New, Courier, monospace;
+   color: white;
+}
+
+* {
+    margin: 0px auto;
+    padding: 0px auto;
+
+}
+
+    
+
+
+
+   .Wrapper {
+
+        width: 1000px;
+        display:block;
+        
+   }
+
+   .hideme {
+       margin-bottom: 30px;
+   }
+
+   .button {
+   
+    background:url(button.PNG) no-repeat;
+    background-size: 20px;
+    width: 25px;
+    height: 25px;
+    border: 2px solid rgba(105, 77, 77, 0);
+    color: rgba(255, 255, 255, 0);
+       
+   
+   }
+
+   form {
+    
+       padding-left: 150px;
+       margin-top: 200px;
+     
+
+    display: block;
+   }
+
+   #Tophalf {
+       background-color: rgba(255, 0, 0, 0);
+       width: 500px;
+       display:block;
+       height: 100px;
+       margin-left: 30%;
+       padding-top:20px;
+       
+   }
+   .Bottomhalf  {
+       padding-top:150px;
+margin-bottom: 200px;
+    background-color: red;
+      display:block;
+       width: 500px;
+       background-color: rgba(0, 0, 255, 0);
+       text-align: center;
+       margin-left: 27%;
+       
+   }
+   p {
+       margin-bottom: 10px;
+       margin-left: -200px;
+       text-align: center;
+   }
+
+   .Bottomhalf p {
+       
+       margin-left: 0px;
+       
+      
+   }
+
+   input.Userinput,submit {
+       background-color: rgba(143, 143, 143, 0.75);
+       border: dotted solid #BEBEBE;
+       
+   }
+
+   ::-webkit-input-placeholder-text{ /* Chrome/Opera/Safari */
+    color: #FFFFFF;
+  }
+
+   h1,h2 {
+       font-size: 18px;
+       padding-left: 10px;
+       padding-right: 10px;
+       margin-bottom: 10px;
+       text-align: center;
+       vertical-align: top;
+       
+       
+   }
