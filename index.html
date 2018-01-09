@@ -21,7 +21,7 @@
                
                 $('.hideme').slideUp(1000);
                 var City = $('.Userinput').val();
-              $.get('http://api.openweathermap.org/data/2.5/weather?q=' + City + '&APPID=c49085f442f36176642c1522090df8c5', function(data) {
+              $.get('https://api.openweathermap.org/data/2.5/weather?q=' + City + '&APPID=c49085f442f36176642c1522090df8c5', function(data) {
 
                 console.log(Math.floor((data.main.temp * (9/5)-459.67)))
 
