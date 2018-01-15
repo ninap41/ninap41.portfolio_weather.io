@@ -5,7 +5,7 @@
    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
-
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Shadows+Into+Light" rel="stylesheet">
     <script>   
           $(document).ready(function() {
 
@@ -135,7 +135,7 @@
                     if (data['weather'][0]['main'] == 'Rain'){
 
                     if (data['weather'][0]['description'] == "moderate rain") {
-                               $('body').css('background-image','url("heavyrain.gif")');
+                               $('body').css('background-image','url("img/heavyrain.gif")');
                                $('.Bottomhalf').append('<p>'  + 'Hope you brought a dang raincoat, though! </p>').fadeIn(4000);
 
                      }
@@ -171,7 +171,7 @@
 
                     if (data['weather'][0]['main'] == 'Thunderstorm' || "Rain"){
                     if (data['weather'][0]['description'] == "moderate rain") {
-                               $('body').css('background-image','url("heavyrain.gif")');
+                               $('body').css('background-image','url("img/heavyrain.gif")');
                                $('.Bottomhalf').append('<p>'  + 'Hope you brought a dang raincoat, though! </p>').fadeIn(4000);
 
                      }
@@ -180,18 +180,18 @@
                           $('.Bottomhalf').append("<p> Bring an umbrella out for a light drizzle... There's enough rain for your artsy fartsy moody instagram pics. </p>"   )
                      } 
                      else if  (data['weather'][0]['description'] == "thunderstorm") {
-                        $('body').css('background-image','url("thunderstorm.gif")');
+                        $('body').css('background-image','url("img/thunderstorm.gif")');
                         $('.Bottomhalf').append('<p>'  + "It WILL thunder today. Existence is bleak. Remember not to get struck by lightning. Unless, you know, thats the goal today. Then Godspeed...." +  '</p>').fadeIn(4000);
                      }
                     }
 //CLEAR
                     if (data['weather'][0]['main'] == 'Clear'){
-                        $('body').css('background-image','url("clearsky.gif")');
+                        $('body').css('background-image','url("img/clearsky.gif")');
                         $('.Bottomhalf').append('<p> Ah yes... The sky. Clear as my purposeless future.</p>')
                     }
 //CLOUDS
                     if (data['weather'][0]['main'] == 'Clouds'){
-                        $('body').css('background-image','url("clouds.gif")');
+                        $('body').css('background-image','url("img/clouds.gif")');
                         if (data['weather'][0]['description'] == 'overcast clouds'){
                             $('.Bottomhalf').append('<p>' + 'These clouds are overcast and ready to throw some savage shade.' +'</p>')
                         }
@@ -214,7 +214,7 @@
 
 //SNOW
                     if (data['weather'][0]['main'] == 'Snow'){
-                        $('body').css('background-image','url("snow.gif")');
+                        $('body').css('background-image','url("img/snow.gif")');
                         if (data['weather'][0]['description'] == 'light snow'){
                             $('.Bottomhalf').append('<p>' + "If the weather outside is frightful. At least the light snow is quite delightful!" +'</p>')
                         }
@@ -243,19 +243,19 @@
                     }
 //thunderstorm 
                 if  (data['weather'][0]['main'] == "thunderstorm") {
-                        $('body').css('background-image','url("thunderstorm.gif")');
+                        $('body').css('background-image','url("img/thunderstorm.gif")');
                         $('.Bottomhalf').append('<p>'  + "It WILL thunder today. Existence is bleak. Remember not to get struck by lightning. Unless, you know, thats the goal today. Then Godspeed...." +  '</p>').fadeIn(4000);
                      }
 
 //FOG
                     if (data['weather'][0]['main'] == 'Fog'){
-                        $('body').css('background-image','url("fog.gif")'); 
+                        $('body').css('background-image','url("img/fog.gif")'); 
                         $('.Bottomhalf').append('<p>Pretty creepy out, huh?</p>')
 
                     }
                     
                     if (data['weather'][0]['main'] == 'Haze'){
-                        $('body').css('background-image','url("fog.gif")'); 
+                        $('body').css('background-image','url("img/fog.gif")'); 
                         $('.Bottomhalf').append('<p>You look a little hazed and confused...</p>')
                     }
 
@@ -268,12 +268,12 @@
 //EXTREME
                     if  (data['weather'][0]['main'] == "extreme") {
                         if(data['weather'][0]['description'] == "tornado"){
-                            $('body').css('background-image','url("bettertornado.gif")');
+                            $('body').css('background-image','url("img/bettertornado.gif")');
 
                         }
                         else if(data['weather'][0]['description'] == "hurricane"){
                             if(data.sys.country == 'US'){
-                                $('body').css('background-image','url("hurricaneamerica.gif")');
+                                $('body').css('background-image','url("img/hurricaneamerica.gif")');
                                 $('.Bottomhalf').append('<p> Please, do not be stupid and go out there.</p>').fadeIn(4000);
                             }
                             else{
@@ -281,7 +281,7 @@
                             }
                         }
                         else if(data['weather'][0]['description'] == "tropical storm"){
-                            $('body').css('background-image','url("tropicalstorm.gif")');
+                            $('body').css('background-image','url("img/tropicalstorm.gif")');
 
 
                         }
@@ -316,14 +316,14 @@
 
     </script>
    <style>
-
-
+@import url('https://fonts.googleapis.com/css?family=Inconsolata|Reenie+Beanie');
 body {
-    background-image: url("giphy.gif");
+    background-image: url("img/giphy.gif");
+    font-size: 1.1rem;
     background-size: 100%;
     background-color: white;
-   font-family: Courier New, Courier, monospace;
-   color: white;
+    font-family: 'Inconsolata', monospace;    
+    color: white;
 }
 
 * {
@@ -338,6 +338,7 @@ body {
    }
 
    .hideme {
+       margin-top: 12rem;
        margin-bottom: 30px;
    }
 
@@ -354,8 +355,8 @@ body {
 
    form {
     
-       padding-left: 150px;
-       margin-top: 200px;
+       padding-left: 10rem;
+       margin-top: 4rem;
     display: block;
    }
 
@@ -365,14 +366,16 @@ body {
        display:block;
        height: 100px;
        margin-left: 30%;
-       padding-top:20px;
+       padding-top:10px;
        
    }
    .Bottomhalf  {
-       padding-top:150px;
+       padding-top:100px;
+       margin-top: 2rem;;
 margin-bottom: 200px;
-background-color: rgba(0, 0, 0, 0.209);
-
+background-color: rgba(0, 0, 0, 0.586);
+border-radius: 50px;;
+        padding: 1rem;
       display:block;
        width: 500px;
        background-color: rgba(0, 0, 0, 0);
@@ -381,8 +384,6 @@ background-color: rgba(0, 0, 0, 0.209);
        
    }
    p {
-    background-color: rgba(0, 0, 0, 0.209);
-
        margin-bottom: 10px;
        margin-left: -200px;
        text-align: center;
@@ -391,15 +392,9 @@ background-color: rgba(0, 0, 0, 0.209);
    .Bottomhalf p {
 
        margin-left: 0px;
-       background-color: rgba(0, 0, 0, 0.209);
 
        
       
-   }
-
-   .appearP {
-    background-color: rgba(0, 0, 0, 0.257);
-
    }
 
    input.Userinput,submit {
@@ -413,7 +408,7 @@ background-color: rgba(0, 0, 0, 0.209);
   }
 
    h1,h2 {
-       font-size: 18px;
+       /* font-size: 18px; */
        padding-left: 10px;
        padding-right: 10px;
        margin-bottom: 10px;
@@ -427,7 +422,6 @@ background-color: rgba(0, 0, 0, 0.209);
 </head>
 <body>
 <div class='Wrapper'>
-    
     <div id="Tophalf" >
     
         <form action="">
@@ -437,11 +431,16 @@ background-color: rgba(0, 0, 0, 0.209);
             <input type="submit" name="Submit"  value="search" class="button">
         </form>
     </div>
-    <div class="Bottomhalf" hidden>
+    <div class="Bottomhalf" style="background-color: rgba(55, 55, 55, 0.336); margin: 2rem; width: 60%;margin-left: 14rem;">    
+       
+  
+     <div class="Bottomhalf" hidden>
 
             <h1 id="fade" hidden></h1>
 
     </div>
+
+</div>
 
     </div>
 </div>
