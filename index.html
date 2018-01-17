@@ -6,9 +6,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- <link rel="stylesheet" type="text/css" href="styles.css"> -->
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Shadows+Into+Light" rel="stylesheet">
-    <script>   
-          $(document).ready(function() {
+    <script>  
 
+          $(document).ready(function() {
+            var count = 0;
             var feelingSomething = ['bad,', 'good,','hopeless,', 'fiesty,','snarky,','dull,','fun,','adamant,','not accomplishing anything and binge-watching something on netflix,','much like burning the world down,','like I see too much in this crooked world,','dismayed that I have realized the meaning of life,','pretty unsurprised to learn that our fates are not predetermined,', 'unsurprised that I learned that the goverment controls the weather,']
             var openingState = "Hey There. How are you today? " + "I'm feeling " + feelingSomething[Math.floor(feelingSomething.length * Math.random())] + " but aren't we all?<BR> "
             $('.hideme').append(openingState + "Would you like to know the weather today? <BR>How about my opinion of it?<BR>");
@@ -16,6 +17,7 @@
             $('.Userinput').focus('');  
             $( ".button" ).click(function(click) {
                 $('.hideme').slideUp(1000);
+                count ++;
                 var City = $('.Userinput').val();
               $.get('https://api.openweathermap.org/data/2.5/weather?q=' + City + '&APPID=c49085f442f36176642c1522090df8c5', function(data) {
                 console.log(data)
@@ -31,11 +33,12 @@
                             $('.Bottomhalf').append(data.message).fadeIn(2000);
 
                         }
+                    
 
 
                         // $('.Bottomhalf').append("<div class='appearP'>")
 /// TEMP CONDITIONS /////////////////////// hits first... //////////////////////////////////////
-  
+                if(count % 5 != 0){
                     if (data.main.temp > 283){
                          if (data.main.temp < 297){
                          $('.Bottomhalf').append('<BR><p>'  + "It's a beautiful day in" + ' ' + City + '! </p>').fadeIn(2000);
@@ -301,7 +304,11 @@
                         $('.Bottomhalf').append('<p>' + "I bet you wonder about the weather elsewhere..." + "</p>" + '<p>'+ 'Search and See..' + `</p>`)
                     }
                     // $('.Bottomhalf').append("</div>")
-                                
+                }
+                else {
+                     $('.Bottomhalf').append('<BR><h3>' + "You've searched over " + count + " places. This is exhausting me." + `</h3>`)
+
+                }     
                      return false; 
               
             }, "json");
