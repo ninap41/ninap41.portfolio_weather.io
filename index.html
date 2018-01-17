@@ -9,7 +9,7 @@
     <script>   
           $(document).ready(function() {
 
-            var feelingSomething = ['bad,', 'good,','shit,','hopeless,', 'fiesty,','snarky,','dull,','fun,','adamant,','not accomplishing anything and binge-watching something on netflix,','much like burning the world down,','like I see too much in this crooked world,','dismayed that I have realized the meaning of life,','pretty unsurprised to learn that our fates are not predetermined,', 'unsurprised that I learned that the goverment controls the weather,']
+            var feelingSomething = ['bad,', 'good,','hopeless,', 'fiesty,','snarky,','dull,','fun,','adamant,','not accomplishing anything and binge-watching something on netflix,','much like burning the world down,','like I see too much in this crooked world,','dismayed that I have realized the meaning of life,','pretty unsurprised to learn that our fates are not predetermined,', 'unsurprised that I learned that the goverment controls the weather,']
             var openingState = "Hey There. How are you today? " + "I'm feeling " + feelingSomething[Math.floor(feelingSomething.length * Math.random())] + " but aren't we all?<BR> "
             $('.hideme').append(openingState + "Would you like to know the weather today? <BR>How about my opinion of it?<BR>");
             $('form').hide().fadeIn(3000);
@@ -200,7 +200,7 @@
 
                         }
                         else if (data['weather'][0]['description'] == 'scattered clouds'){
-                            $('.Bottomhalf').append('<p>' + 'Clouds as scattered your sense of self...' +'</p>')
+                            $('.Bottomhalf').append('<p>' + 'Clouds as scattered as your sense of self...' +'</p>')
 
                         }
                         else if (data['weather'][0]['description'] == 'broken clouds'){
