@@ -173,19 +173,19 @@
 //thunderstorm
 
                     if (data['weather'][0]['main'] == 'Thunderstorm' || "Rain"){
-                    if (data['weather'][0]['description'] == "moderate rain") {
+                    if (data['weather'][0]['description'] == "moderate rain"){
                                $('body').css('background-image','url("img/heavyrain.gif")');
                                $('.Bottomhalf').append('<p>'  + 'Hope you brought a dang raincoat, though! </p>').fadeIn(4000);
-
                      }
                      else if (data['weather'][0]['description'] == "light rain")  {
                           $('body').css('background-image','url("img/lightrain.gif")');
-                          $('.Bottomhalf').append("<p> Bring an umbrella out for a light drizzle... There's enough rain for your artsy fartsy moody instagram pics. </p>"   )
+                        //   $('.Bottomhalf').append("<p> Bring an umbrella out for a light drizzle... There's enough rain for your artsy fartsy moody instagram pics. </p>"   )
                      } 
                      else if  (data['weather'][0]['description'] == "thunderstorm") {
                         $('body').css('background-image','url("img/thunderstorm.gif")');
                         $('.Bottomhalf').append('<p>'  + "It WILL thunder today. Existence is bleak. Remember not to get struck by lightning. Unless, you know, thats the goal today. Then Godspeed...." +  '</p>').fadeIn(4000);
                      }
+                  
                     }
 //CLEAR
                     if (data['weather'][0]['main'] == 'Clear'){
