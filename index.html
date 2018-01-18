@@ -9,9 +9,15 @@
     <script>  
 
           $(document).ready(function() {
+            var CountryVisitUS = 0;      
+            // var temp = "" + CountryVisitUS;
             var count = 0;
+            var datagifs;
             var feelingSomething = ['bad,', 'good,','hopeless,', 'fiesty,','snarky,','dull,','fun,','adamant,','not accomplishing anything and binge-watching something on netflix,','much like burning the world down,','like I see too much in this crooked world,','dismayed that I have realized the meaning of life,','pretty unsurprised to learn that our fates are not predetermined,', 'unsurprised that I learned that the goverment controls the weather,']
             var openingState = "Hey There. How are you today? " + "I'm feeling " + feelingSomething[Math.floor(feelingSomething.length * Math.random())] + " but aren't we all?<BR> "
+            var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=ryan+gosling&api_key=dDWZJEuFNv8jPqXFbC3xXsQTtzPRy6kK&limit=10");
+
+
             $('.hideme').append(openingState + "Would you like to know the weather today? <BR>How about my opinion of it?<BR>");
             $('form').hide().fadeIn(3000);
             $('.Userinput').focus('');  
@@ -21,12 +27,17 @@
                 var City = $('.Userinput').val();
               $.get('https://api.openweathermap.org/data/2.5/weather?q=' + City + '&APPID=c49085f442f36176642c1522090df8c5', function(data) {
                 console.log(data)
+            xhr.done(function(datagif) { console.log("success got data",  datagif );   });
                 // console.log(Math.floor((data.main.temp * (9/5)-459.67)))
                 $('.Bottomhalf').hide().html('<h1>' + City + ' ' + data.sys.country 
                     + '</h1>' + '<h2>Temp:' +  ' ' + (Math.floor((data.main.temp * (9/5)-459.67))) + '°</h2>' + '<h2>Humidity:' 
-                    + ' ' + data.main.humidity + "°<h2>"  + '</h2>' + '<h2>Outlook:' + ' ' 
+                    + ' ' + data.main.humidity + "%<h2>"  + '</h2>' + '<h2>Outlook:' + ' ' 
                         + data['weather'][0]['description'] + "</h2>").fadeIn(2000);  
                 $('.Userinput').val('');
+   
+                     
+                //  
+                
 /// IF NOT FOUND! /////////////////////// hits first... //////////////////////////////////////
 
                         if(data.message == 'city not found'){
@@ -41,7 +52,17 @@
                 if(count % 5 != 0){
                     if (data.main.temp > 283){
                          if (data.main.temp < 297){
-                         $('.Bottomhalf').append('<BR><p>'  + "It's a beautiful day in" + ' ' + City + '! </p>').fadeIn(2000);
+
+                            if (data.main.temp < 297 && data['weather'][0]['main'] == 'Thunderstorm'){
+                            $('.Bottomhalf').append('<BR><p>'  + "It's a thunderous day in" + ' ' + City + '! </p>').fadeIn(2000);
+
+                            }
+                            else if (data.main.temp < 297 && data['weather'][0]['main'] == 'Rain'){
+                            $('.Bottomhalf').append('<BR><p>'  + "It's the perfect rainy day in" + ' ' + City + '! </p>').fadeIn(2000);
+                            }
+                            else{
+                            $('.Bottomhalf').append('<BR><p>'  + "It's a beautiful day in" + ' ' + City + '! </p>').fadeIn(2000);
+                            }
                         }
                         else if(data.main.temp > 297){
                             $('.Bottomhalf').append('<BR><p>'  + "It's a hot one today in" + ' ' + City + '! </p>').fadeIn(2000);
@@ -49,12 +70,18 @@
                     }
                    if  (data.main.temp < 283){
                       if (data.main.temp > 266) {
+
                           $('.Bottomhalf').append('<BR><p>'  + "It's a bit chilly today in" + ' ' + City + '! </p>').fadeIn(2000);
+
                           }
                          else if (data.main.temp < 266){
-                        $('.Bottomhalf').append('<BR><p>'  + "It's freezing in" + ' ' + City + '! Why are you there? Why am I here? Why are we all here?</p>').fadeIn(2000);
-                        }
-                        
+                            if (data.main.temp < 266 && data['weather'][0]['main'] == 'Rain' || data['weather'][0]['main'] == 'Thunderstorm'){
+                            $('.Bottomhalf').append('<BR><p>'  + "It's Damp and cold in" + ' ' + City + '... Like my bleak emergence into this world</p>').fadeIn(2000);
+                            }
+                            else{
+                        $('.Bottomhalf').append('<BR><p>'  + "It's really freezing in" + ' ' + City + '! Why are you there? Why am I here? Why are we all here?</p>').fadeIn(2000);
+                            }
+                        }   
                     }
                     if (data.main.humidity >76 && data.main.temp > 297){
                         $('.Bottomhalf').append('<p>'  + "It's so humid in" + " " + City + ", I'm suprised you aren't sticking to things." + `</p>`).fadeIn(4000);
@@ -74,8 +101,11 @@
                     $('.Bottomhalf').append('<p>'  + 'Cool clocks. Architecture. Pubs. Greenery. Manners. Comedy. But keep your damn tea.</p>').fadeIn(4000);
                 }
                 else if (data.sys.country == 'US'){ //US
-                $('.Bottomhalf').append('<p>'  + 'but do not EVEN get me started on your current political climate... </p>').fadeIn(4000);
-                
+                CountryVisitUS ++
+                if(CountryVisitUS == 1){
+                $('.Bottomhalf').append('<p>'  + 'but the US? Do not EVEN get me started on your current political climate... </p>').fadeIn(4000);
+                 }
+                 else {}
                 }
                 else if (data.sys.country == 'RU'){ //Russia
                 $('.Bottomhalf').append('<p>'  + 'I had vodka for breakfast too. </p>').fadeIn(4000);
@@ -258,8 +288,12 @@
                     }
                     
                     if (data['weather'][0]['main'] == 'Haze'){
-                        $('body').css('background-image','url("img/fog.gif")'); 
+                        $('body').css('background-image','url("img/haze.gif")'); 
                         $('.Bottomhalf').append('<p>You look a little hazed and confused...</p>')
+                    }
+                    if (data['weather'][0]['main'] == 'Mist'){
+                        $('body').css('background-image','url("img/fog.gif")'); 
+                        $('.Bottomhalf').append('<p>Ah Yes. Haunted by the subtle mists of self-doubt.</p>')
                     }
 
 //HAZE
@@ -439,8 +473,7 @@ border-radius: 50px;;
         </form>
     </div>
     <div class="Bottomhalf" style="background-color: rgba(55, 55, 55, 0.336); margin: 2rem; width: 60%;margin-left: 14rem;">    
-       
-  
+
      <div class="Bottomhalf" hidden>
 
             <h1 id="fade" hidden></h1>
