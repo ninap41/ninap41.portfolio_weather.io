@@ -3,6 +3,8 @@
 <head>
     <title>Weather</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
     <script src="./weather.js"></script>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Shadows+Into+Light" rel="stylesheet">
@@ -15,12 +17,20 @@
             <div id="Tophalf">
                 <form action="">
                     <p class="hideme"></p>
-                    <input type="text" name="location" placeholder="  Search by City" class="Userinput">
-                    <input type="submit" name="Submit" value="search" class="button">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text" id="inputGroup-sizing-sm">City</span>
+                        </div>
+                        <input type="text"  name="location" placeholder="  Search by City" class="form-control Userinput" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                        <div class="input-group-append">
+                            <button class="btn btn-success button" type="button"></button>
+                          </div>
+                      </div>
+                      
                 </form>
             </div>
             <div class="Bottomhalf"
-                style="background-color: rgba(55, 55, 55, 0.336); margin: 2rem; width: 60%;margin-left: 14rem;">
+                style="background-color: rgba(55, 55, 55, 0.336)">
                 <div class="Bottomhalf" hidden>
                     <h1 id="fade" hidden></h1>
                 </div>
