@@ -1,10 +1,13 @@
+
 var utils = {
+ 
   APICALL: async () => {
-    config.city = $(".Userinput").val();
+    config.city = $(".cityInput").val();
+    // config.state = $(".stateInput").val() || '';
+    // config.country = $(".countryInput").val() || '';
+    // ${ config.state ? ',' + config.state : ''}${   config.country ? ',' +   config.country : ''}
     $.get(
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
-        config.city +
-        "&APPID=c49085f442f36176642c1522090df8c5",
+      `https://api.openweathermap.org/data/2.5/weather?q=${config.city}&APPID=c49085f442f36176642c1522090df8c5`,
       function (data, error) {
         if (data) {
           config.count += 1;
@@ -37,16 +40,267 @@ var utils = {
           htmlRenderer.renderTempSnark();
           htmlRenderer.renderCountrySnark();
           htmlRenderer.renderWeatherSnark();
-          $(".Bottomhalf").append(
-            "<p>" +
-              "I bet you wonder about the weather elsewhere..." +
-              "</p>" +
-              "<p>" +
-              "Search and See.." +
-              `</p>`
-          );
+          
+          $(".Bottomhalf").append(`<p>I bet you wonder about the weather elsewhere...</p>`).fadeIn(200);
+          $(".Bottomhalf").append(`<p>Search and see!</p>`).fadeIn(200);
+
         }
       });
+  },
+  countryFormatter: (val) => {
+      let countries = {
+BD: "Bangladesh",
+BE: "Belgium",
+BF: "Burkina Faso",
+BG: "Bulgaria",
+BA: "Bosnia and Herzegovina",
+BB: "Barbados",
+WF: "Wallis and Futuna",
+BL: "Saint Barthelemy",
+BM: "Bermuda",
+BN: "Brunei",
+BO: "Bolivia",
+BH: "Bahrain",
+BI: "Burundi",
+BJ: "Benin",
+BT: "Bhutan",
+JM: "Jamaica",
+BV: "Bouvet Island",
+BW: "Botswana",
+WS: "Samoa",
+BQ: "Bonaire, Saint Eustatius and Saba ",
+BR: "Brazil",
+BS: "Bahamas",
+JE: "Jersey",
+BY: "Belarus",
+BZ: "Belize",
+RU: "Russia",
+RW: "Rwanda",
+RS: "Serbia",
+TL: "East Timor",
+RE: "Reunion",
+TM: "Turkmenistan",
+TJ: "Tajikistan",
+RO: "Romania",
+TK: "Tokelau",
+GW: "Guinea-Bissau",
+GU: "Guam",
+GT: "Guatemala",
+GS: "South Georgia and the South Sandwich Islands",
+GR: "Greece",
+GQ: "Equatorial Guinea",
+GP: "Guadeloupe",
+JP: "Japan",
+GY: "Guyana",
+GG: "Guernsey",
+GF: "French Guiana",
+GE: "Georgia",
+GD: "Grenada",
+GB: "United Kingdom",
+GA: "Gabon",
+SV: "El Salvador",
+GN: "Guinea",
+GM: "Gambia",
+GL: "Greenland",
+GI: "Gibraltar",
+GH: "Ghana",
+OM: "Oman",
+TN: "Tunisia",
+JO: "Jordan",
+HR: "Croatia",
+HT: "Haiti",
+HU: "Hungary",
+HK: "Hong Kong",
+HN: "Honduras",
+HM: "Heard Island and McDonald Islands",
+VE: "Venezuela",
+PR: "Puerto Rico",
+PS: "Palestinian Territory",
+PW: "Palau",
+PT: "Portugal",
+SJ: "Svalbard and Jan Mayen",
+PY: "Paraguay",
+IQ: "Iraq",
+PA: "Panama",
+PF: "French Polynesia",
+PG: "Papua New Guinea",
+PE: "Peru",
+PK: "Pakistan",
+PH: "Philippines",
+PN: "Pitcairn",
+PL: "Poland",
+PM: "Saint Pierre and Miquelon",
+ZM: "Zambia",
+EH: "Western Sahara",
+EE: "Estonia",
+EG: "Egypt",
+ZA: "South Africa",
+EC: "Ecuador",
+IT: "Italy",
+VN: "Vietnam",
+SB: "Solomon Islands",
+ET: "Ethiopia",
+SO: "Somalia",
+ZW: "Zimbabwe",
+SA: "Saudi Arabia",
+ES: "Spain",
+ER: "Eritrea",
+ME: "Montenegro",
+MD: "Moldova",
+MG: "Madagascar",
+MF: "Saint Martin",
+MA: "Morocco",
+MC: "Monaco",
+UZ: "Uzbekistan",
+MM: "Myanmar",
+ML: "Mali",
+MO: "Macao",
+MN: "Mongolia",
+MH: "Marshall Islands",
+MK: "Macedonia",
+MU: "Mauritius",
+MT: "Malta",
+MW: "Malawi",
+MV: "Maldives",
+MQ: "Martinique",
+MP: "Northern Mariana Islands",
+MS: "Montserrat",
+MR: "Mauritania",
+IM: "Isle of Man",
+UG: "Uganda",
+TZ: "Tanzania",
+MY: "Malaysia",
+MX: "Mexico",
+IL: "Israel",
+FR: "France",
+IO: "British Indian Ocean Territory",
+SH: "Saint Helena",
+FI: "Finland",
+FJ: "Fiji",
+FK: "Falkland Islands",
+FM: "Micronesia",
+FO: "Faroe Islands",
+NI: "Nicaragua",
+NL: "Netherlands",
+NO: "Norway",
+NA: "Namibia",
+VU: "Vanuatu",
+NC: "New Caledonia",
+NE: "Niger",
+NF: "Norfolk Island",
+NG: "Nigeria",
+NZ: "New Zealand",
+NP: "Nepal",
+NR: "Nauru",
+NU: "Niue",
+CK: "Cook Islands",
+XK: "Kosovo",
+CI: "Ivory Coast",
+CH: "Switzerland",
+CO: "Colombia",
+CN: "China",
+CM: "Cameroon",
+CL: "Chile",
+CC: "Cocos Islands",
+CA: "Canada",
+CG: "Republic of the Congo",
+CF: "Central African Republic",
+CD: "Democratic Republic of the Congo",
+CZ: "Czech Republic",
+CY: "Cyprus",
+CX: "Christmas Island",
+CR: "Costa Rica",
+CW: "Curacao",
+CV: "Cape Verde",
+CU: "Cuba",
+SZ: "Swaziland",
+SY: "Syria",
+SX: "Sint Maarten",
+KG: "Kyrgyzstan",
+KE: "Kenya",
+SS: "South Sudan",
+SR: "Suriname",
+KI: "Kiribati",
+KH: "Cambodia",
+KN: "Saint Kitts and Nevis",
+KM: "Comoros",
+ST: "Sao Tome and Principe",
+SK: "Slovakia",
+KR: "South Korea",
+SI: "Slovenia",
+KP: "North Korea",
+KW: "Kuwait",
+SN: "Senegal",
+SM: "San Marino",
+SL: "Sierra Leone",
+SC: "Seychelles",
+KZ: "Kazakhstan",
+KY: "Cayman Islands",
+SG: "Singapore",
+SE: "Sweden",
+SD: "Sudan",
+DO: "Dominican Republic",
+DM: "Dominica",
+DJ: "Djibouti",
+DK: "Denmark",
+VG: "British Virgin Islands",
+DE: "Germany",
+YE: "Yemen",
+DZ: "Algeria",
+US: "United States",
+UY: "Uruguay",
+YT: "Mayotte",
+UM: "United States Minor Outlying Islands",
+LB: "Lebanon",
+LC: "Saint Lucia",
+LA: "Laos",
+TV: "Tuvalu",
+TW: "Taiwan",
+TT: "Trinidad and Tobago",
+TR: "Turkey",
+LK: "Sri Lanka",
+LI: "Liechtenstein",
+LV: "Latvia",
+TO: "Tonga",
+LT: "Lithuania",
+LU: "Luxembourg",
+LR: "Liberia",
+LS: "Lesotho",
+TH: "Thailand",
+TF: "French Southern Territories",
+TG: "Togo",
+TD: "Chad",
+TC: "Turks and Caicos Islands",
+LY: "Libya",
+VA: "Vatican",
+VC: "Saint Vincent and the Grenadines",
+AE: "United Arab Emirates",
+AD: "Andorra",
+AG: "Antigua and Barbuda",
+AF: "Afghanistan",
+AI: "Anguilla",
+VI: "U.S. Virgin Islands",
+IS: "Iceland",
+IR: "Iran",
+AM: "Armenia",
+AL: "Albania",
+AO: "Angola",
+AQ: "Antarctica",
+AS: "American Samoa",
+AR: "Argentina",
+AU: "Australia",
+AT: "Austria",
+AW: "Aruba",
+IN: "India",
+AX: "Aland Islands",
+AZ: "Azerbaijan",
+IE: "Ireland",
+ID: "Indonesia",
+UA: "Ukraine",
+QA: "Qatar",
+MZ: "Mozambique"
+}
+return countries[val];
   },
   CalConverter: (val) => {
     let f = Math.floor(val * (9 / 5) - 459.67);
@@ -86,6 +340,8 @@ var utils = {
 var config = {
   route: "home" || "country",
   country: undefined,
+  displayCountry: undefined,
+  state: undefined,
   city: undefined,
   main: {
     feels_like: undefined,
@@ -109,228 +365,128 @@ const htmlRenderer = {
       .hide()
       .html(
         `
-            <h1>${config.city} | ${config.country}</h1>
+            <h1>${config.city}, ${utils.countryFormatter(config.country)}</h1>
             <h2>Temp:${config.main.temp}&#176;</h2>
             <h2>Humidity: ${config.main.humidity}%</h2>
             <h2>Outlook: ${config.weather.description}</h2>`
       )
       .fadeIn(2000);
-    $(".Userinput").val("");
+    $(".cityInput").val("");
   },
   renderTempSnark: () => {
+    let display = (val) => $(".Bottomhalf")
+            .append( `<p> ${val} </p>`)
+            .hide()
+            .fadeIn(400);
+    //hotter
     if (config.main.temp > 49) {
       if (config.main.temp < 74) {
-        if (config.main.temp < 74 && config.weather.main == "Thunderstorm") {
-          $(".Bottomhalf")
-            .append(
-              "<BR><p>" +
-                "It's a thunderous day in" +
-                " " +
-                config.city +
-                "! </p>"
-            )
-            .fadeIn(2000);
-        } else if (config.main.temp < 74 && config.weather.main == "Rain") {
-          $(".Bottomhalf")
-            .append(
-              "<BR><p>" +
-                "It's the perfect rainy day in" +
-                " " +
-                config.city +
-                "! </p>"
-            )
-            .fadeIn(2000);
-        } else {
-          $(".Bottomhalf")
-            .append(
-              "<BR><p>" +
-                "It's a beautiful day in" +
-                " " +
-                config.city +
-                "! </p>"
-            )
-            .fadeIn(2000);
-        }
-      } else if (config.main.temp > 74) {
-        $(".Bottomhalf")
-          .append(
-            "<BR><p>" + "It's a hot one today in" + " " + config.city + "! </p>"
-          )
-          .fadeIn(2000);
-      }
+        if (config.main.temp < 74 && config.weather.main == "Thunderstorm")  display(`It's a thunderous day in ${config.city}`);
+        else if (config.main.temp < 74 && config.weather.main == "Rain")  display(` It's the perfect rainy day in ${config.city}`) ;
+        else  display(`It's beautiful day in ${config.city}`)
+      } 
+      //really hot
+      if (config.main.temp > 74 ) {
+        display(`It's a hot one today in  ${config.city}`)
+     } 
+      if (config.main.temp > 74 && config.main.temp > 101) {
+        display(`You're in a burning hell, and hell is real.`)
+     } 
     }
+
+    // colder
     if (config.main.temp < 49) {
       if (config.main.temp > 19) {
-        $(".Bottomhalf")
-          .append(
-            "<BR><p>" +
-              "It's a bit chilly today in" +
-              " " +
-              config.city +
-              "! </p>"
-          )
-          .fadeIn(2000);
-      } else if (config.main.temp < 19) {
+          display(`It's a bit chilly today in ${config.city}`)
+      }
+       else if (config.main.temp < 19) {
         if (
           (config.main.temp < 19 && config.weather.main == "Rain") ||
           config.weather.main == "Thunderstorm"
         ) {
-          $(".Bottomhalf")
-            .append(
-              "<BR><p>" +
-                "It's Damp and cold in" +
-                " " +
-                config.city +
-                "... Like my bleak emergence into this world</p>"
-            )
-            .fadeIn(2000);
+           display(`"It's Damp and cold in ${config.city}... Like my bleak emergence into this world`)
         } else {
-          $(".Bottomhalf")
-            .append(
-              "<BR><p>" +
-                "It's really freezing in" +
-                " " +
-                config.city +
-                "! Why are you there? Why am I here? Why are we all here?</p>"
-            )
-            .fadeIn(2000);
+            display(`"It's really freezing in ${config.city}! Why are you there? Why am I here? Why are we all here?`)
         }
       }
     }
-    if (config.main.temp > 76 && config.main.temp > 297) {
-      $(".Bottomhalf")
-        .append(
-          "<p>" +
-            "It's so humid in" +
-            " " +
-            config.city +
-            ", I'm suprised you aren't sticking to things." +
-            `</p>`
-        )
-        .fadeIn(4000);
-    } else if (config.main.temp < 40 && config.main.temp > 74) {
-      $(".Bottomhalf")
-        .append("<p>" + "It's so dry, I would not want to be there..." + `</p>`)
-        .fadeIn(4000);
+
+    // humid
+    if (config.main.humidity > 76 && config.main.temp > 74) {
+         display(`"It's so humid in ${config.city}, I'm suprised you aren't sticking to things.`)
+    } else if (config.main.humidity < 40 && config.main.temp > 74) {
+       display(`"It's so dry, I would not want to be there...`)
     }
   },
+
   renderCountrySnark: () => {
+      let display = (val) => $(".Bottomhalf")
+            .append( `<p> ${val} </p>`)
+            .fadeIn(400);
     if (config.country == "GB") {
       //UK
-      $(".Bottomhalf")
-        .append(
-          "<p>" +
-            "Cool clocks. Architecture. Pubs. Greenery. Manners. Comedy. But keep your damn tea.</p>"
-        )
-        .fadeIn(4000);
+      display(`Cool clocks. Architecture. Pubs. Greenery. Manners. Comedy. But keep your damn tea.`)
     } else if (config.country == "US") {
       //US
-      $(".Bottomhalf")
-        .append(
-          "<p>" +
-            "but the US? Do not EVEN get me started on your current political climate... </p>"
-        )
-        .fadeIn(4000);
+       display(`"but the US? Do not EVEN get me started on your current political climate...`)
     } else if (config.country == "RU") {
       //Russia
-      $(".Bottomhalf")
-        .append("<p>" + "I had vodka for breakfast too. </p>")
-        .fadeIn(4000);
-    } else if (config.country == "MX") {
+             display(`I had vodka for breakfast too. `)
+    } else if (config.country == "MX" || config.country == "CN" || config.country == "HK") {
       //china
-      $(".Bottomhalf")
-        .append(
-          "<p>" +
-            "Way to go leading the global economy, but not for using so much coal. Im a fucking weather app. You bet I go green. </p>"
-        )
-        .fadeIn(4000);
-    } else if (config.country == "CN") {
-      //china
-      $(".Bottomhalf")
-        .append(
-          "<p>" +
-            "Way to go leading the global economy, but not for using so much coal. Im a fucking weather app. You bet I go green. </p>"
-        )
-        .fadeIn(4000);
+       display(`Way to go leading the global economy, but not for using so much coal. Im a fucking weather app. You bet I go green.`)
     } else if (config.country == "CA") {
-      //canada
-      $(".Bottomhalf").append("<p>Oh, Canada... eh?</p>").fadeIn(4000);
+       display(`Oh, Canada... eh?`)
     } else if (config.country == "SE") {
       //sweden
-      $(".Bottomhalf")
-        .append(
-          "<p>The climates pretty... Wait... why is everthing so glamorous here? This country is so beautiful its making me insecure. :() </p>"
-        )
-        .fadeIn(4000);
-    } else if (config.country == "HK") {
-      //China
-      $(".Bottomhalf")
-        .append(
-          "<p>" +
-            "Way to go leading the global economy, but not for using so much coal. Im a fucking weather app. You bet I go green. </p>"
-        )
-        .fadeIn(4000);
+        display(`The climates pretty... Wait... why is everthing so glamorous here? This country is so beautiful its making me insecure. `)
+        display(`Can't think of a bad thing to say about Sweden `)
+        display(`Oh wait... don't you all have suicide clinics? `)
+
+
     } else if (config.country == "DE") {
       //Germany
-      $(".Bottomhalf")
-        .append(
-          "<p>" + "Vat? Oktoberfest isnt allll year? ich hasse dich.  </p>"
-        )
-        .fadeIn(4000);
+    display(`Vat? Oktoberfest isnt allll year? ich hasse dich.  `)
+
     } else if (config.country == "JP") {
       //Japan
-      $(".Bottomhalf")
-        .append("<p>" + "But anyways, Konichiwa!</p>")
-        .fadeIn(4000);
+    display(`But anyways, Konichiwa! `)
+
     } else if (config.country == "FR") {
       //France
-      $(".Bottomhalf")
-        .append("<p>" + "hon hon hon... </p>")
-        .fadeIn(4000);
+       display(`High class & the best skramz.`)
     } else if (config.country == "IE") {
       //Ireland
-      $(".Bottomhalf")
-        .append("<p>" + "Go read 'Dubliners' or something. </p>")
-        .fadeIn(4000);
+      display(`I'm gonna go read dubliners or something`)
+
     } else if (config.country == "IT") {
       //Italy
-      $(".Bottomhalf")
-        .append(
-          "<p>" + "When the weather hits your eye like a big pizza pie... </p>"
-        )
-        .fadeIn(4000);
+       display(`When the weather hits your eye like a big pizza pie...`)
     } else if (config.country == "AU") {
       //Australia
-      $(".Bottomhalf")
-        .append("<p>" + "Oi Oi Aussie. How's it down under?</p>")
-        .fadeIn(4000);
+       display(`Oi Oi Aussie. How's it down under?`)
+     
     } else if (config.country == "AU") {
       //Mexico
-      $(".Bottomhalf")
-        .append(
-          "<p>" +
-            "Lo único que entiendo es mi miseria ... Pero hola en México</p>"
-        )
-        .fadeIn(4000);
+        display(`Lo único que entiendo es mi miseria ... Pero hola en México`)
+
     } else if (config.country == "NO") {
       //Norway
-      $(".Bottomhalf")
-        .append(
-          "<p>" +
-            "Aw cool Norway, huh? NO WAY!</p><BR> Don't worry, I'm hyper-aware of how cringey I am."
-        )
-        .fadeIn(4000);
+    display(`Aw cool Norway, huh? NO WAY!</p><BR> Don't worry, I'm hyper-aware of how cringey I am.`)
+
     } else if (config.country == "NZ") {
       //New Zealand
-      $(".Bottomhalf")
-        .append(
-          "<p>" +
-            "...but remember the fires of Mordor always loom over Middle-Earth. :/"
-        )
-        .fadeIn(4000);
+          display(`...but remember the fires of Mordor always loom over Middle-Earth. :/`)
     }
   },
   renderWeatherSnark: () => {
+      let display = (img, val) => {
+          
+            $("body").css("background-image", `url("./img/${img}")`);
+            $(".Bottomhalf")
+            .append( `<p> ${val} </p>`)
+            .fadeIn(400);
+      }
     if (config.weather.main == "Rain") {
       if (config.weather.description == "moderate rain") {
         $("body").css("background-image", 'url("./img/heavyrain.gif")');
@@ -386,8 +542,6 @@ const htmlRenderer = {
     // //thunderstorm
 
     if (config.weather.main == "Thunderstorm" || "Rain") {
-      console.log("rain");
-
       if (config.weather.description == "moderate rain") {
         $("body").css("background-image", 'url("./img/heavyrain.gif")');
         $(".Bottomhalf")
@@ -441,27 +595,23 @@ const htmlRenderer = {
     if (config.weather.main == "Snow") {
       $("body").css("background-image", 'url("./img/snow.gif")');
       if (config.weather.description == "light snow") {
-        $(".Bottomhalf").append(
-          "<p>" +
-            "If the weather outside is frightful. At least the light snow is quite delightful!" +
-            "</p>"
-        );
+          display('snow.gif',"If the weather outside is frightful. At least the light snow is quite delightful!")
+      
       } else if (config.weather.description == "snow") {
-        $(".Bottomhalf").append(
-          "<p>" + "While it's a snowy winter wonderland, Enjoy it! " + "</p>"
-        );
+            display('snow.gif',"While it's a snowy winter wonderland, Enjoy it!")
+
+    
       } else if (config.weather.description == "Heavy Snow") {
-        $(".Bottomhalf").append(
-          "<p>" +
-            "Careful out there! Its snowing quite heavily. Get out your snow boots!" +
-            "</p>"
-        );
+          display('snow.gif',"Careful out there! Its snowing quite heavily. Get out your snow boots!")
+
+       
       } else if (config.weather.description == "broken clouds") {
-        $(".Bottomhalf").append("<p>" + "broken clouds present!" + "</p>");
+         display('snow.gif', "broken clouds present!")
+
       } else if (config.weather.description == "sleet") {
-        $(".Bottomhalf").append(
-          "<p>" + "No fun. Just sleet the whole day" + "</p>"
-        );
+                   display('snow.gif',"No fun. Just sleet the whole day")
+
+       
       } else if (
         config.weather.description == "shower sleet" ||
         "light rain and snow" ||
@@ -470,61 +620,41 @@ const htmlRenderer = {
         "shower snow" ||
         "heavy shower snow"
       ) {
-        $(".Bottomhalf").append(
-          "<p>" +
-            "Snow or Rain? Dang weather, make up your mind! Careful out there" +
-            config.city +
-            "folks" +
-            "</p>"
-        );
+        display('snow.gif',"Snow or Rain? Dang weather, make up your mind! Careful out there")
       } else {
       }
     }
 
     if (config.weather.main == "thunderstorm") {
-      $("body").css("background-image", 'url("./img/thunderstorm.gif")');
-      $(".Bottomhalf")
-        .append(
-          "<p>" +
-            "It WILL thunder today. Existence is bleak. Remember not to get struck by lightning. Unless, you know, thats the goal today. Then Godspeed...." +
-            "</p>"
-        )
-        .fadeIn(4000);
+     display('thunderstorm.gif',"It WILL thunder today. Existence is bleak. Remember not to get struck by lightning. Unless, you know, thats the goal today. Then Godspeed....")
     }
 
     if (config.weather.main == "Fog") {
-      $("body").css("background-image", 'url("./img/fog.gif")');
-      $(".Bottomhalf").append("<p>Pretty creepy out, huh?</p>");
+    display('fog.gif',"Pretty creepy out, huh")
     }
 
     if (config.weather.main == "Haze") {
-      $("body").css("background-image", 'url("./img/haze.gif")');
-      $(".Bottomhalf").append("<p>You look a little hazed and confused...</p>");
+      display('haze.gif',"You look a little hazed and confused...")
     }
     if (config.weather.main == "Mist") {
-      $("body").css("background-image", 'url("./img/fog.gif")');
-      $(".Bottomhalf").append(
-        "<p>Ah Yes. Haunted by the subtle mists of self-doubt.</p>"
-      );
+       display('fog.gif',"Ah Yes. Haunted by the subtle mists of self-doubt.")
     }
 
     if (config.weather.main == "extreme") {
       if (config.weather.description == "tornado") {
-        $("body").css("background-image", 'url("./img/bettertornado.gif")');
+                 display('bettertornado.gif',"Um... hide?")
+
       } else if (config.weather.description == "hurricane") {
         if (config.country == "US") {
-          $("body").css(
-            "background-image",
-            'url("./img/hurricaneamerica.gif")'
-          );
-          $(".Bottomhalf")
-            .append("<p> Please, do not be stupid and go out there.</p>")
-            .fadeIn(4000);
+             display('hurricaneamerica.gif',"Please, do not be stupid and go out there.")
+
+         
         } else {
-          $("body").css("background-image", 'url("./HURRICANE.gif")');
+          display('HURRICANE.gif',"I'm not gonna crack a joke here. Stay safe.")
         }
       } else if (config.weather.description == "tropical storm") {
-        $("body").css("background-image", 'url("./img/tropicalstorm.gif")');
+        display('tropicalstorm.gif',"I'm not gonna crack a joke here. Stay safe.")
+
       } else if (config.weather.description == "cold") {
       } else if (config.weather.description == "hot") {
       } else if (config.weather.description == "windy") {
@@ -536,7 +666,7 @@ const htmlRenderer = {
 $(document).ready(function () {
   config.openingState();
   $("form").hide().fadeIn(3000);
-  $(".Userinput").focus("");
+  $(".cityInput").focus("");
   $(".button").click(function (click) {
     $(".hideme").slideUp(1000);
     utils.APICALL();
