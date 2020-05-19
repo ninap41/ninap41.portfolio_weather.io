@@ -6,6 +6,8 @@ var utils = {
     // config.state = $(".stateInput").val() || '';
     // config.country = $(".countryInput").val() || '';
     // ${ config.state ? ',' + config.state : ''}${   config.country ? ',' +   config.country : ''}
+  
+
     $.get(
       `https://api.openweathermap.org/data/2.5/weather?q=${config.city}&APPID=c49085f442f36176642c1522090df8c5`,
       function (data, error) {
@@ -35,15 +37,23 @@ var utils = {
               " places. This is exhausting me." +
               `</h3>`
           );
+          config.count = 0;
         } else {
-          htmlRenderer.renderInfo();
-          htmlRenderer.renderTempSnark();
-          htmlRenderer.renderCountrySnark();
-          htmlRenderer.renderWeatherSnark();
-          
-          $(".Bottomhalf").append(`<p>I bet you wonder about the weather elsewhere...</p>`).fadeIn(200);
-          $(".Bottomhalf").append(`<p>Search and see!</p>`).fadeIn(200);
-
+            $(".loader").html(`
+                <div class="d-flex justify-content-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>`);
+            setTimeout(function(){ 
+                $(".loader").hide();
+                htmlRenderer.renderInfo();
+                htmlRenderer.renderTempSnark();
+                htmlRenderer.renderCountrySnark();
+                htmlRenderer.renderWeatherSnark();
+                $(".Bottomhalf").append(`<p>I bet you wonder about the weather elsewhere...</p>`).fadeIn(200);
+                $(".Bottomhalf").append(`<p>Search and see!</p>`).fadeIn(200);
+             }, 1000);
         }
       });
   },
@@ -306,6 +316,11 @@ return countries[val];
     let f = Math.floor(val * (9 / 5) - 459.67);
     return f;
   },
+  hpaToIn: (val) => {
+
+  
+    return val *  0.030 
+  },
   openingState: () => {
     var feelingSomething = [
       "bad,",
@@ -367,6 +382,7 @@ const htmlRenderer = {
         `
             <h1>${config.city}, ${utils.countryFormatter(config.country)}</h1>
             <h2>Temp:${config.main.temp}&#176;</h2>
+            <h2>Pressure: ${utils.hpaToIn(config.main.pressure)}in</h2>
             <h2>Humidity: ${config.main.humidity}%</h2>
             <h2>Outlook: ${config.weather.description}</h2>`
       )
